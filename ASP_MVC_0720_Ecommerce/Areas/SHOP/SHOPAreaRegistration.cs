@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace ASP_MVC_0720_Ecommerce.Areas.HOMEWEB
+namespace ASP_MVC_0720_Ecommerce.Areas.SHOP
 {
-    public class HOMEWEBAreaRegistration : AreaRegistration 
+    public class SHOPAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "HOMEWEB";
+                return "SHOP";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "HOMEWEB_default",
-                "HOMEWEB/{controller}/{action}/{id}",
+                "SHOP_default",
+                "SHOP/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

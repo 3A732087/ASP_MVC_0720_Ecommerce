@@ -16,8 +16,8 @@ namespace ASP_MVC_0720_Ecommerce
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                defaults: new { controller = "HomeWeb", action = "Index", id = UrlParameter.Optional }
+            ).DataTokens.Add("Area","SHOP");
         }
     }
 }
