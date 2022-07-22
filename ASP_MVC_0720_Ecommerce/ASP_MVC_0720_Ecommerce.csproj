@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="jose-jwt, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jose-jwt.4.0.0\lib\net472\jose-jwt.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -123,12 +126,20 @@
     <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
     <Compile Include="Areas\ADMIN\Controllers\AdminManagementController.cs" />
     <Compile Include="Areas\SHOP\Controllers\HomeWebController.cs" />
+    <Compile Include="Areas\SHOP\Controllers\MembersController.cs" />
+    <Compile Include="Areas\SHOP\Models\Members.cs" />
     <Compile Include="Areas\SHOP\SHOPAreaRegistration.cs" />
+    <Compile Include="Areas\SHOP\ViewModels\MembersLoginViewModel.cs" />
+    <Compile Include="Areas\SHOP\ViewModels\MembersRegisterViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\JwtObject.cs" />
+    <Compile Include="Security\JwtService.cs" />
+    <Compile Include="Services\MailService.cs" />
+    <Compile Include="Services\MembersDBService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\MANAGEMENT\css\sb-admin-2.css" />
@@ -146,6 +157,19 @@
     <Content Include="Areas\ADMIN\Views\web.config" />
     <Content Include="Areas\SHOP\Views\web.config" />
     <Content Include="Areas\ADMIN\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\SHOP\Views\Members\RegisterResult.cshtml" />
+    <Content Include="Areas\SHOP\Views\Members\Login.cshtml" />
+    <Content Include="Areas\SHOP\Views\Members\EmailValidate.cshtml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\MANAGEMENT\js\demo\chart-area-demo.js" />
     <Content Include="Scripts\MANAGEMENT\js\demo\chart-bar-demo.js" />
     <Content Include="Scripts\MANAGEMENT\js\demo\chart-pie-demo.js" />
@@ -1822,6 +1846,7 @@
     <Content Include="Scripts\MANAGEMENT\vendor\jquery\jquery.slim.js" />
     <Content Include="Scripts\MANAGEMENT\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Scripts\SHOP\js\scripts.js" />
+    <Content Include="Views\Shared\RegisterEmailTemplate.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1852,6 +1877,8 @@
     <Content Include="Areas\ADMIN\Views\AdminManagement\Index.cshtml" />
     <Content Include="Areas\SHOP\Views\Shared\_ShopLayout.cshtml" />
     <Content Include="Areas\SHOP\Views\HomeWeb\Index.cshtml" />
+    <Content Include="Areas\SHOP\Views\HomeWeb\Login.cshtml" />
+    <Content Include="Areas\SHOP\Views\Members\Register.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\MANAGEMENT\vendor\bootstrap\js\bootstrap.bundle.js.map" />
     <Content Include="Scripts\MANAGEMENT\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
@@ -2002,6 +2029,8 @@
     <Content Include="Scripts\MANAGEMENT\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Scripts\MANAGEMENT\vendor\jquery\jquery.min.map" />
     <Content Include="Scripts\MANAGEMENT\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

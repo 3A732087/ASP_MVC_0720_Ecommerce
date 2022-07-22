@@ -1,0 +1,66 @@
+﻿@model ASP_MVC_0720_Ecommerce.Areas.SHOP.ViewModels.MembersRegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Areas/SHOP/Views/Shared/_ShopLayout.cshtml";
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+@using (Html.BeginForm("Register", "Members", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <!-- Page content-->
+    <section class="py-5">
+        <div class="container px-5">
+            <!-- Contact form-->
+            <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div class="text-center mb-5">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+                    <h1 class="fw-bolder">註冊</h1>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        <form id="contactForm">
+                            <!-- Account input-->
+                            <div class="form-floating mb-3">
+                                @*<input class="form-control" id="name" type="text" placeholder="請輸入帳號" data-sb-validations="required" />*@
+                                @Html.TextBoxFor(model => model.newMember.Account, new { @class = "form-control" })
+                                @Html.LabelFor(model => model.newMember.Account)
+                                @Html.ValidationMessageFor(model => model.newMember.Account, null, new { @class = "alert-danger" })
+                            </div>
+                            <!-- Password input-->
+                            <div class="form-floating mb-3">
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                                @Html.LabelFor(model => model.Password)
+                                @Html.ValidationMessageFor(model => model.Password, null, new { @class = "alert-danger" })
+                            </div>
+                            <!-- PasswordCheck input-->
+                            <div class="form-floating mb-3">
+                                @Html.PasswordFor(model => model.PasswordCheck, new { @class = "form-control" })
+                                @Html.LabelFor(model => model.PasswordCheck)
+                                @Html.ValidationMessageFor(model => model.PasswordCheck, null, new { @class = "alert-danger" })
+                            </div>
+                            <!-- Name input-->
+                            <div class="form-floating mb-3">
+                                @Html.TextBoxFor(model => model.newMember.Name, new { @class = "form-control" })
+                                @Html.LabelFor(model => model.newMember.Name)
+                                @Html.ValidationMessageFor(model => model.newMember.Name, null, new { @class = "alert-danger" })
+                            </div>
+                            <!-- Email input-->
+                            <div class="form-floating mb-3">
+                                @Html.TextBoxFor(model => model.newMember.Email, new { @class = "form-control" })
+                                @Html.LabelFor(model => model.newMember.Email)
+                                @Html.ValidationMessageFor(model => model.newMember.Email, null, new { @class = "alert-danger" })
+                            </div>
+                            <!-- Submit Button-->
+                            <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">註冊</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

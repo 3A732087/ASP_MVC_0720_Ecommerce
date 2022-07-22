@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "EmailValidate";
+    Layout = "~/Areas/SHOP/Views/Shared/_ShopLayout.cshtml";
+}
+
+<!-- Page content-->
+<section class="py-5">
+    <div class="container px-5">
+        <!-- Contact form-->
+        <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-check-circle"></i></div>
+                <h1 class="fw-bolder">Email驗證</h1>
+                <p class="lead fw-normal text-muted mb-0">
+                    @ViewData["EmailValidate"]
+                </p>
+            </div>
+            @Html.ActionLink("去登入", "Login", "Members", new { area = "SHOP" })
+            @Html.ActionLink("再註冊", "Register", "Members", new { area = "SHOP" })
+        </div>
+    </div>
+</section>
+
