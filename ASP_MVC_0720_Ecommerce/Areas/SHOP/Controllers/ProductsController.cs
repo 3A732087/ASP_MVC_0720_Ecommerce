@@ -7,14 +7,19 @@ using System.Web.Mvc;
 
 namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Controllers
 {
-    public class HomeWebController : Controller
+    public class ProductsController : Controller
     {
         private readonly ProductService productService = new ProductService();
-
-        // GET: SHOP/HomeWeb
+        // GET: SHOP/Products
         public ActionResult Index()
         {
-            ViewBag.RecommendProducts = productService.GetRecommendProducts();
+            ViewBag.ProductList = productService.GetAllProducts();
+            return View();
+        }
+
+        public ActionResult Product(int ProductId)
+        {
+            ViewBag.Product = productService.GetDataById(ProductId);
             return View();
         }
     }

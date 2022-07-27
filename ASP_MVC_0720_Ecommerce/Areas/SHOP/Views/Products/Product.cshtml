@@ -1,0 +1,21 @@
+﻿@using ASP_MVC_0720_Ecommerce.Areas.SHOP.Models;
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Areas/SHOP/Views/Shared/_ShopLayout.cshtml";
+    Products product = ViewBag.Product;
+}
+<!-- Page Content -->
+<section class="py-5">
+    <div class="container px-5">
+        @*<h2 class="fw-bolder mb-4">@product.Product_Name</h2>*@
+        <div class="row gx-5 ">
+            <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
+            <div class="col-lg-6">
+                <h2 class="fw-bolder">@product.Product_Name</h2>
+                <p class="lead fw-normal text-muted mb-5">@product.Product_Content</p>
+                <p class="fw-bolder" style="font-size:1.2rem">$@product.Price</p>
+                <button type="button" class="btn btn-primary">加入購物車</button>
+            </div>
+        </div>
+    </div>
+</section>
