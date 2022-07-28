@@ -125,9 +125,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
     <Compile Include="Areas\ADMIN\Controllers\AdminManagementController.cs" />
+    <Compile Include="Areas\SHOP\Controllers\CartsController.cs" />
     <Compile Include="Areas\SHOP\Controllers\HomeWebController.cs" />
     <Compile Include="Areas\SHOP\Controllers\MembersController.cs" />
+    <Compile Include="Areas\SHOP\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\SHOP\Models\Carts.cs" />
     <Compile Include="Areas\SHOP\Models\Members.cs" />
+    <Compile Include="Areas\SHOP\Models\Products.cs" />
+    <Compile Include="Areas\SHOP\Services\CartsService.cs" />
+    <Compile Include="Areas\SHOP\Services\ProductService.cs" />
     <Compile Include="Areas\SHOP\SHOPAreaRegistration.cs" />
     <Compile Include="Areas\SHOP\ViewModels\MembersLoginViewModel.cs" />
     <Compile Include="Areas\SHOP\ViewModels\MembersRegisterViewModel.cs" />
@@ -160,6 +166,9 @@
     <Content Include="Areas\SHOP\Views\Members\RegisterResult.cshtml" />
     <Content Include="Areas\SHOP\Views\Members\Login.cshtml" />
     <Content Include="Areas\SHOP\Views\Members\EmailValidate.cshtml" />
+    <Content Include="Areas\SHOP\Views\Products\Index.cshtml" />
+    <Content Include="Areas\SHOP\Views\Products\Product.cshtml" />
+    <Content Include="Areas\SHOP\Views\Carts\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

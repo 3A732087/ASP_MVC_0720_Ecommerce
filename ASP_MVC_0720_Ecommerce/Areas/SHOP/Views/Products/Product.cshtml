@@ -14,7 +14,7 @@
                 <h2 class="fw-bolder">@product.Product_Name</h2>
                 <p class="lead fw-normal text-muted mb-5">@product.Product_Content</p>
                 <p class="fw-bolder" style="font-size:1.2rem">$@product.Price</p>
-                <button type="button" class="btn btn-primary">加入購物車</button>
+                <p><a href="@Url.Action("Put","Carts")?Account=@User.Identity.Name.ToString()&Product_Id=@product.Product_Id.ToString()" class="btn btn-primary">加入購物車</a></p>
             </div>
         </div>
     </div>
