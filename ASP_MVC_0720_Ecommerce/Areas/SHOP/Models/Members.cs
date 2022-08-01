@@ -25,7 +25,7 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Models
 
         [DisplayName("電子郵件")]
         [Required(ErrorMessage = "請輸入Email")]
-        [StringLength(200, ErrorMessage = "姓名長度最多200字元")]
+        [StringLength(200, ErrorMessage = "Email長度最多200字元")]
         [EmailAddress(ErrorMessage = "這不是Email格式")]
         public string Email { get; set; }
 

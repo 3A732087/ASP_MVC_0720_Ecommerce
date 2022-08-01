@@ -29,7 +29,6 @@ namespace ASP_MVC_0720_Ecommerce.Services
             {
                 conn.Open();
                 SqlCommand Sql_cmd = conn.CreateCommand();
-                Sql_cmd.Connection = conn;
 
                 //Sql寫入
                 string sql = @"INSERT INTO Members (Account, Password, Name, Email, AuthCode, IsAdmin) VALUES (@Account, @Password, @Name, @Email, @AuthCode, @IsAdmin)";
@@ -86,7 +85,6 @@ namespace ASP_MVC_0720_Ecommerce.Services
             {
                 conn.Open();
                 SqlCommand Sql_cmd = conn.CreateCommand();
-                Sql_cmd.Connection = conn;
 
                 string sql = @"select * from Members where 1=1 and Account = @Account";
                 Sql_cmd.CommandText = sql;
@@ -133,7 +131,6 @@ namespace ASP_MVC_0720_Ecommerce.Services
             {
                 conn.Open();
                 SqlCommand Sql_cmd = conn.CreateCommand();
-                Sql_cmd.Connection = conn;
 
                 string sql = @"select * from Members where 1=1 and Account = @Account";
                 Sql_cmd.CommandText = sql;
@@ -175,7 +172,6 @@ namespace ASP_MVC_0720_Ecommerce.Services
                     {
                         conn.Open();
                         SqlCommand Sql_cmd = conn.CreateCommand();
-                        Sql_cmd.Connection = conn;
 
                         string sql = @"UPDATE MEMBERS SET AuthCode = @AuthCode WHERE Account = @Account";
                         Sql_cmd.CommandText = sql;
