@@ -75,7 +75,7 @@ namespace ASP_MVC_0720_Ecommerce.Services
         }
         #endregion
 
-        #region 查詢一筆資料
+        #region 查詢一筆資料(private)
         //藉由帳號查詢單筆資料
         //因會員資料隱密性，所以用private限制只能在Service內使用
         private Members GetDataByAccount(string Account)
@@ -253,6 +253,47 @@ namespace ASP_MVC_0720_Ecommerce.Services
                 Role += ",Admin";
             }
             return Role;
+        }
+        #endregion
+
+        #region 變更密碼
+        public string ChangePassword(string Account, string Password, string newPassword)
+        {
+            Members LoginMember = GetDataByAccount(Account);
+
+            if(PasswordCheck(LoginMember, Password))
+            {
+                LoginMember.Password = HashPassword(newPassword);
+
+                string sql = @"UPDATE Members SET Password = @Password WHERE Account = @Account";
+
+                try
+                {
+                    conn.Open();
+                    SqlCommand Sql_cmd = conn.CreateCommand();
+                    Sql_cmd.CommandText = sql;
+
+                    Sql_cmd.Parameters.Clear();
+                    Sql_cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = LoginMember.Password;
+                    Sql_cmd.Parameters.Add("@Account", SqlDbType.VarChar).Value = Account;
+
+                    Sql_cmd.ExecuteNonQuery();
+
+                }
+                catch(Exception e)
+                {
+                    throw new Exception(e.Message.ToString());
+                }
+                finally
+                {
+                    conn.Close();
+                }
+                return "修改密碼成功";
+            }
+            else
+            {
+                return "舊密碼輸入錯誤";
+            }
         }
         #endregion
     }

@@ -62,7 +62,6 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Controllers
         }
         #endregion
 
-
         #region 註冊
         //註冊顯示頁面
         public ActionResult Register()
@@ -151,6 +150,27 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Controllers
             Session.Remove("Username");
             //重新導向至登入Action
             return RedirectToAction("Index", "HomeWeb", new { area = "SHOP" });
+        }
+        #endregion
+
+        #region 修改密碼
+        [Authorize]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+
+        //修改密碼傳入資料
+        [Authorize]
+        [HttpPost]
+        public ActionResult ChangePassword(MembersChangePasswordViewModel ChangeData)
+        {
+            if (ModelState.IsValid)
+            {
+                TempData["msg"] = membersService.ChangePassword(User.Identity.Name, ChangeData.Password, ChangeData.NewPassword);
+            }
+            return View();
         }
         #endregion
     }

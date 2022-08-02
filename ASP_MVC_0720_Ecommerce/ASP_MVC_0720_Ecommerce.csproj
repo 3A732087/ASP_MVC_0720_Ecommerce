@@ -142,6 +142,7 @@
     <Compile Include="Areas\SHOP\Services\PurchaseSerivce.cs" />
     <Compile Include="Areas\SHOP\SHOPAreaRegistration.cs" />
     <Compile Include="Areas\SHOP\ViewModels\CheckoutViewModel.cs" />
+    <Compile Include="Areas\SHOP\ViewModels\MembersChangePasswordViewModel.cs" />
     <Compile Include="Areas\SHOP\ViewModels\MembersLoginViewModel.cs" />
     <Compile Include="Areas\SHOP\ViewModels\MembersRegisterViewModel.cs" />
     <Compile Include="Areas\SHOP\ViewModels\OrderDetailViewModel.cs" />
@@ -181,6 +182,7 @@
     <Content Include="Areas\SHOP\Views\Purchase\Checkout.cshtml" />
     <Content Include="Areas\SHOP\Views\Order\Main.cshtml" />
     <Content Include="Areas\SHOP\Views\Order\OrderDetail.cshtml" />
+    <Content Include="Areas\SHOP\Views\Members\ChangePassword.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
