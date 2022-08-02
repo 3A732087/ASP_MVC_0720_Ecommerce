@@ -1,0 +1,62 @@
+﻿@model ASP_MVC_0720_Ecommerce.Areas.SHOP.ViewModels.OrderDetailViewModel
+
+@{
+    ViewBag.Title = "OrderDetail";
+    Layout = "~/Areas/SHOP/Views/Shared/_ShopLayout.cshtml";
+}
+
+<!-- Testimonial section-->
+<div class="py-3">
+    <div class="container px-3 my-3">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-12 col-xl-12">
+                <h2>訂單明細</h2>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DetailData[0].Order_No)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DetailData[0].Account)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DetailData[0].Product_No)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DetailData[0].Product_Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DetailData[0].Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DetailData[0].Qty)
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.DetailData)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Order_No)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Account)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product_No)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Qty)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

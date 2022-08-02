@@ -128,19 +128,24 @@
     <Compile Include="Areas\SHOP\Controllers\CartsController.cs" />
     <Compile Include="Areas\SHOP\Controllers\HomeWebController.cs" />
     <Compile Include="Areas\SHOP\Controllers\MembersController.cs" />
+    <Compile Include="Areas\SHOP\Controllers\OrderController.cs" />
     <Compile Include="Areas\SHOP\Controllers\ProductsController.cs" />
     <Compile Include="Areas\SHOP\Controllers\PurchaseController.cs" />
     <Compile Include="Areas\SHOP\Models\Carts.cs" />
     <Compile Include="Areas\SHOP\Models\Members.cs" />
     <Compile Include="Areas\SHOP\Models\Order.cs" />
+    <Compile Include="Areas\SHOP\Models\OrderDetail.cs" />
     <Compile Include="Areas\SHOP\Models\Products.cs" />
     <Compile Include="Areas\SHOP\Services\CartsService.cs" />
+    <Compile Include="Areas\SHOP\Services\OrderService.cs" />
     <Compile Include="Areas\SHOP\Services\ProductService.cs" />
     <Compile Include="Areas\SHOP\Services\PurchaseSerivce.cs" />
     <Compile Include="Areas\SHOP\SHOPAreaRegistration.cs" />
     <Compile Include="Areas\SHOP\ViewModels\CheckoutViewModel.cs" />
     <Compile Include="Areas\SHOP\ViewModels\MembersLoginViewModel.cs" />
     <Compile Include="Areas\SHOP\ViewModels\MembersRegisterViewModel.cs" />
+    <Compile Include="Areas\SHOP\ViewModels\OrderDetailViewModel.cs" />
+    <Compile Include="Areas\SHOP\ViewModels\OrderViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -174,6 +179,8 @@
     <Content Include="Areas\SHOP\Views\Products\Product.cshtml" />
     <Content Include="Areas\SHOP\Views\Carts\Index.cshtml" />
     <Content Include="Areas\SHOP\Views\Purchase\Checkout.cshtml" />
+    <Content Include="Areas\SHOP\Views\Order\Main.cshtml" />
+    <Content Include="Areas\SHOP\Views\Order\OrderDetail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

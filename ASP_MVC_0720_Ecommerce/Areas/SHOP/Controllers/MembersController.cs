@@ -14,11 +14,6 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Controllers
     {
         private readonly MembersDBService membersService = new MembersDBService();
         private readonly MailService mailService = new MailService();
-        // GET: SHOP/Members
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         #region 登入
         //登入畫面
