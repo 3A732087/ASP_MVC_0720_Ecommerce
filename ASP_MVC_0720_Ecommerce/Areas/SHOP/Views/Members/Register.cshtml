@@ -5,11 +5,6 @@
     Layout = "~/Areas/SHOP/Views/Shared/_ShopLayout.cshtml";
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
-
 @using (Html.BeginForm("Register", "Members", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <!-- Page content-->
