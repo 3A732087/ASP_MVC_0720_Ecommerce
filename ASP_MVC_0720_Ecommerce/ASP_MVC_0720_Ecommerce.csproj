@@ -154,6 +154,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\JwtObject.cs" />
     <Compile Include="Security\JwtService.cs" />
+    <Compile Include="Services\LineNotifyService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\MembersDBService.cs" />
   </ItemGroup>
@@ -183,6 +184,8 @@
     <Content Include="Areas\SHOP\Views\Order\Main.cshtml" />
     <Content Include="Areas\SHOP\Views\Order\OrderDetail.cshtml" />
     <Content Include="Areas\SHOP\Views\Members\ChangePassword.cshtml" />
+    <Content Include="Areas\SHOP\Views\Members\LineNotifySetting.cshtml" />
+    <Content Include="Areas\SHOP\Views\Members\AfterLineNotifyLogin.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1900,7 +1903,6 @@
     <Content Include="Areas\ADMIN\Views\AdminManagement\Index.cshtml" />
     <Content Include="Areas\SHOP\Views\Shared\_ShopLayout.cshtml" />
     <Content Include="Areas\SHOP\Views\HomeWeb\Index.cshtml" />
-    <Content Include="Areas\SHOP\Views\HomeWeb\Login.cshtml" />
     <Content Include="Areas\SHOP\Views\Members\Register.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\MANAGEMENT\vendor\bootstrap\js\bootstrap.bundle.js.map" />

@@ -20,7 +20,7 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Services
 
 
         #region 結帳
-        public void CheckoutAll(CheckoutViewModel newCheckout)
+        public Dictionary<string,object> CheckoutAll(CheckoutViewModel newCheckout)
         {
             conn.Open();
             SqlTransaction trans;
@@ -28,18 +28,17 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Services
             SqlCommand Sql_cmd = new SqlCommand();
             Sql_cmd.Connection = conn;
             Sql_cmd.Transaction = trans;
-
             string sql;
+
+            Dictionary<string, object> _result = new Dictionary<string, object>();
             try
             {
-
-
                 #region 訂單主檔寫入
-                sql = @"INSERT INTO Orders (Order_No, Account, Receiver, Email, Address, Total, Date) VALUES (@Order_No, @Account, @Receiver, @Email, @Address, @Total, @Date);SELECT CONVERT(INT, SCOPE_IDENTITY());";
+                sql = @"INSERT INTO Orders (Account, Receiver, Email, Address, Total, Date) VALUES (@Account, @Receiver, @Email, @Address, @Total, @Date);SELECT CONVERT(INT, SCOPE_IDENTITY());";
                 Sql_cmd.CommandText = sql;
 
                 Sql_cmd.Parameters.Clear();
-                Sql_cmd.Parameters.Add("@Order_No", SqlDbType.NVarChar).Value = "test";
+                //Sql_cmd.Parameters.Add("@Order_No", SqlDbType.NVarChar).Value = "test";
                 Sql_cmd.Parameters.Add("@Account", SqlDbType.NVarChar).Value = newCheckout.newOrder.Account;
                 Sql_cmd.Parameters.Add("@Receiver", SqlDbType.NVarChar).Value = newCheckout.newOrder.Receiver;
                 Sql_cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = newCheckout.newOrder.Email;
@@ -91,22 +90,29 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Services
                 Sql_cmd.Parameters.Add("@Account", SqlDbType.NVarChar).Value = newCheckout.newOrder.Account;
 
                 Sql_cmd.ExecuteNonQuery();
+                #endregion
 
                 trans.Commit();
 
-                #endregion
+                _result.Add("Result", true);
+                _result.Add("Order_No", Order_No);
+                _result.Add("Msg", "結帳完成");
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message.ToString());
+                _result.Add("Result", false);
+                _result.Add("Order_No", "");
+                _result.Add("Msg", e.Message.ToString());
                 trans.Rollback();
+                throw new Exception(e.Message.ToString());
+
             }
             finally
             {
                 conn.Close();
                 trans.Dispose();
-
             }
+            return _result;
         }
         #endregion
 

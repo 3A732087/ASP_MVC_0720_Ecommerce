@@ -1,9 +1,14 @@
 ﻿using ASP_MVC_0720_Ecommerce.Areas.SHOP.ViewModels;
 using ASP_MVC_0720_Ecommerce.Security;
 using ASP_MVC_0720_Ecommerce.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
@@ -14,6 +19,12 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Controllers
     {
         private readonly MembersDBService membersService = new MembersDBService();
         private readonly MailService mailService = new MailService();
+
+        #region Line Notify參數
+        string _client_id = WebConfigurationManager.AppSettings["client_id"].ToString();
+        string _client_secret = WebConfigurationManager.AppSettings["client_secret"].ToString();
+        string _redirect_uri = WebConfigurationManager.AppSettings["redirect_uri"].ToString();
+        #endregion
 
         #region 登入
         //登入畫面
@@ -169,6 +180,96 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Controllers
             if (ModelState.IsValid)
             {
                 TempData["msg"] = membersService.ChangePassword(User.Identity.Name, ChangeData.Password, ChangeData.NewPassword);
+            }
+            return View();
+        }
+        #endregion
+
+        #region Line Notify設定
+        //設定畫面
+        public ActionResult LineNotifySetting()
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "Members", new { area = "SHOP" });
+
+            ViewBag.AccessToken = membersService.GetLineNotifyAccessToken(User.Identity.Name);
+            return View();
+        }
+
+        //連動按鈕
+        public ActionResult GetLineNotifyLoginUrl()
+        {
+            if(Request.IsAjaxRequest() == false)
+            {
+                return Content("");
+            }
+            string state = Guid.NewGuid().ToString();
+            TempData["state"] = state;
+            string LineLoginUrl = $@"https://notify-bot.line.me/oauth/authorize?response_type=code&client_id={_client_id}&redirect_uri={_redirect_uri}&scope=notify&state={state}";            
+
+            return Content(LineLoginUrl);
+        }
+
+        //取得AccessToken
+        [Authorize]
+        public ActionResult AfterLineNotifyLogin(string state, string code, string error, string error_description)
+        {
+            if (!string.IsNullOrEmpty(error))
+            {//用戶沒授權你的LineApp
+                ViewBag.error = error;
+                ViewBag.error_description = error_description;
+                return View();
+            }
+
+            if (TempData["state"] == null)
+            {//可能使用者停留Line登入頁面太久
+                return Content("頁面逾期");
+            }
+
+            if (Convert.ToString(TempData["state"]) != state)
+            {//使用者原先Request QueryString的TempData["state"]和Line導頁回來夾帶的state Querystring不一樣，可能是parameter tampering或CSRF攻擊
+                return Content("state驗證失敗");
+            }
+
+            if (Convert.ToString(TempData["state"]) == state)
+            {
+                //state字串驗證通過
+                Dictionary<string, object> l_result = new Dictionary<string, object>();
+
+                string Url = "https://notify-bot.line.me/oauth/token";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+
+                request.Method = "POST";
+                request.KeepAlive = true; //是否保持連線
+                request.ContentType = "application/x-www-form-urlencoded";
+                string posturi = "";
+                posturi += "grant_type=authorization_code";
+                posturi += "&code=" + code; //Authorize code
+                posturi += "&redirect_uri=" + _redirect_uri;
+                posturi += "&client_id=" + _client_id;
+                posturi += "&client_secret=" + _client_secret;
+
+                byte[] bytes = Encoding.UTF8.GetBytes(posturi);//轉byte[]
+
+                using (var stream = request.GetRequestStream())
+                {
+                    stream.Write(bytes, 0, bytes.Length);
+                }
+
+                var response = (HttpWebResponse)request.GetResponse();
+
+                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();//回傳JSON
+                responseString = "[" + responseString + "]";
+                response.Close();
+
+                var token = JsonConvert.DeserializeObject<JArray>(responseString)[0]["access_token"].ToString();
+                var Status = JsonConvert.DeserializeObject<JArray>(responseString)[0]["status"].ToString();
+
+                ViewBag.access_token = token;
+                ViewBag.status = Status;
+
+                //寫入Sql 
+                membersService.UpdateLineNotifyAccessToken(User.Identity.Name, token);
             }
             return View();
         }

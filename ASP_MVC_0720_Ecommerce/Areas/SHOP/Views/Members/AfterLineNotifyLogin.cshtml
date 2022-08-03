@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "AfterLineNotifyLogin";
+    Layout = "~/Areas/SHOP/Views/Shared/_ShopLayout.cshtml";
+}
+
+@if (!string.IsNullOrEmpty(Convert.ToString(ViewBag.error)))
+{
+    <h1>@ViewBag.error</h1>
+    <h2>@ViewBag.error_description</h2>
+}
+
+
+@if (!string.IsNullOrEmpty(Convert.ToString(ViewBag.Status)) && Convert.ToString(ViewBag.Status) == "200")
+{
+<script type="text/javascript">
+            window.onload = function () {
+                let userObj = "@Html.Raw(Convert.ToString(ViewBag.access_token))";
+                window.opener.document.getElementById("AccessToken").value = userObj;
+                window.close();
+        }
+</script>
+}
+

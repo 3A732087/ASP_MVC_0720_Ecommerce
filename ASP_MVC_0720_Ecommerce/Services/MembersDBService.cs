@@ -296,5 +296,67 @@ namespace ASP_MVC_0720_Ecommerce.Services
             }
         }
         #endregion
+
+        #region 撈取LineNotifyAccessToken
+        public string GetLineNotifyAccessToken(string Account)
+        {
+            string sql = @"SELECT Account, LineNotifyAccessToken FROM Members WHERE Account = @Account";
+
+            string result;
+            try
+            {
+                conn.Open();
+                SqlCommand Sql_cmd = new SqlCommand();
+                Sql_cmd.Connection = conn;
+                Sql_cmd.CommandText = sql;
+
+                Sql_cmd.Parameters.Clear();
+                Sql_cmd.Parameters.Add("@Account", SqlDbType.VarChar).Value = Account;
+
+                SqlDataReader dr = Sql_cmd.ExecuteReader();
+                dr.Read();
+                result = dr["LineNotifyAccessToken"].ToString();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return result;
+        }
+        #endregion
+
+        #region LineNotify寫入(Update)
+        public void UpdateLineNotifyAccessToken(string Account, string AccessToken)
+        {
+            string sql = @"UPDATE Members SET LineNotifyAccessToken = @LineNotifyAccessToken WHERE Account = @Account";
+
+            try
+            {
+                conn.Open();
+                SqlCommand Sql_cmd = new SqlCommand();
+                Sql_cmd.Connection = conn;
+                Sql_cmd.CommandText = sql;
+
+                Sql_cmd.Parameters.Clear();
+                Sql_cmd.Parameters.Add("@LineNotifyAccessToken", SqlDbType.NVarChar).Value = AccessToken;
+                Sql_cmd.Parameters.Add("@Account", SqlDbType.VarChar).Value = Account;
+
+                Sql_cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        #endregion
     }
 }

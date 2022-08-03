@@ -1,6 +1,7 @@
 ﻿using ASP_MVC_0720_Ecommerce.Areas.SHOP.Models;
 using ASP_MVC_0720_Ecommerce.Areas.SHOP.Services;
 using ASP_MVC_0720_Ecommerce.Areas.SHOP.ViewModels;
+using ASP_MVC_0720_Ecommerce.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,10 +51,18 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Controllers
             if (ModelState.IsValid)
             {
                 PurchaseSerivce purchaseService = new PurchaseSerivce();
+                LineNotifyService linenotifyService = new LineNotifyService();
+                MembersDBService membersDBService = new MembersDBService();
+
                 CheckoutData.Product = cartsService.GetCartProduct(User.Identity.Name);
                 CheckoutData.newOrder.Account = User.Identity.Name;
-                purchaseService.CheckoutAll(CheckoutData);
-                TempData["msg"] = "結帳完成！";
+                Dictionary<string,object> _Result = purchaseService.CheckoutAll(CheckoutData);
+                if(_Result["Result"].Equals(true))
+                {
+                    TempData["msg"] = "結帳完成！";
+                    string AccessToken = membersDBService.GetLineNotifyAccessToken(User.Identity.Name);
+                    linenotifyService.LineMsgPush(AccessToken, _Result);
+                }
                 return RedirectToAction("Index", "HomeWeb", new { area = "SHOP" });
             }
             else
