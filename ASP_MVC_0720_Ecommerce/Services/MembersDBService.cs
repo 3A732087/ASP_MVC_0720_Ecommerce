@@ -334,6 +334,7 @@ namespace ASP_MVC_0720_Ecommerce.Services
         {
             string sql = @"UPDATE Members SET LineNotifyAccessToken = @LineNotifyAccessToken WHERE Account = @Account";
 
+
             try
             {
                 conn.Open();
@@ -342,7 +343,11 @@ namespace ASP_MVC_0720_Ecommerce.Services
                 Sql_cmd.CommandText = sql;
 
                 Sql_cmd.Parameters.Clear();
-                Sql_cmd.Parameters.Add("@LineNotifyAccessToken", SqlDbType.NVarChar).Value = AccessToken;
+                if(AccessToken == "")
+                    Sql_cmd.Parameters.Add("@LineNotifyAccessToken", SqlDbType.NVarChar).Value = DBNull.Value;
+                else
+                    Sql_cmd.Parameters.Add("@LineNotifyAccessToken", SqlDbType.NVarChar).Value = AccessToken;
+
                 Sql_cmd.Parameters.Add("@Account", SqlDbType.VarChar).Value = Account;
 
                 Sql_cmd.ExecuteNonQuery();

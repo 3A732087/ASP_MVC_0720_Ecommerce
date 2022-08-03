@@ -273,6 +273,33 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Controllers
             }
             return View();
         }
+
+        //取消綁定LineNotify
+        [Authorize]
+        public ActionResult RevokeLineNotify()
+        {
+            string AccessToken = membersService.GetLineNotifyAccessToken(User.Identity.Name);
+
+            string Url = "https://notify-api.line.me/api/revoke";
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+
+            request.Method = "POST";
+            request.KeepAlive = true; //是否保持連線
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.Headers.Add("Authorization", "Bearer " + AccessToken);
+
+            var response = request.GetResponse();
+            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();//回傳JSON
+            responseString = "[" + responseString + "]";
+            response.Close();
+
+            var Status = JsonConvert.DeserializeObject<JArray>(responseString)[0]["status"].ToString();
+
+            membersService.UpdateLineNotifyAccessToken(User.Identity.Name, "");
+            TempData["msg"] = "連動已解除。";
+
+            return RedirectToAction("LineNotifySetting");
+        }
         #endregion
     }
 }
