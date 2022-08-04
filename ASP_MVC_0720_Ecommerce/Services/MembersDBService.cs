@@ -40,7 +40,7 @@ namespace ASP_MVC_0720_Ecommerce.Services
                 Sql_cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = newMember.Name;
                 Sql_cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = newMember.Email;
                 Sql_cmd.Parameters.Add("@AuthCode", SqlDbType.NChar).Value = newMember.AuthCode;
-                Sql_cmd.Parameters.Add("@IsAdmin", SqlDbType.Bit).Value = false;
+                Sql_cmd.Parameters.Add("@IsAdmin", SqlDbType.NVarChar).Value = "0";
 
                 Sql_cmd.ExecuteNonQuery();
             }
@@ -99,7 +99,7 @@ namespace ASP_MVC_0720_Ecommerce.Services
                 Data.Name = dr["Name"].ToString();
                 Data.Email = dr["Email"].ToString();
                 Data.AuthCode = dr["AuthCode"].ToString();
-                Data.IsAdmin = Convert.ToBoolean(dr["IsAdmin"]);
+                Data.IsAdmin = dr["IsAdmin"].ToString();
             }
             catch (Exception e)
             {
@@ -248,7 +248,7 @@ namespace ASP_MVC_0720_Ecommerce.Services
         {
             string Role = "User";
             Members LoginMember = GetDataByAccount(Account);
-            if (LoginMember.IsAdmin)
+            if (LoginMember.IsAdmin == "1")
             {
                 Role += ",Admin";
             }

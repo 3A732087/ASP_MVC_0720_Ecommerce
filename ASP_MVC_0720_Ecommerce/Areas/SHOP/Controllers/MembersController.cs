@@ -158,7 +158,7 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Controllers
             cookie.Values.Clear();
             Response.Cookies.Set(cookie);
             //清除session
-            Session.Remove("Username");
+            Session.RemoveAll();
             //重新導向至登入Action
             return RedirectToAction("Index", "HomeWeb", new { area = "SHOP" });
         }

@@ -13,7 +13,7 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Models
         [DisplayName("帳號")]
         [Required(ErrorMessage = "請輸入帳號")]
         [StringLength(30, MinimumLength = 6 , ErrorMessage = "此帳號長度需介於6-30字元")]
-        [Remote("AccountCheck","HomeWeb", "SHOP", ErrorMessage ="此帳號已被註冊過")]
+        [Remote("AccountCheck","Members", "SHOP", ErrorMessage ="此帳號已被註冊過")]
         public string Account { get; set; }
 
         public string Password { get; set; }
@@ -31,6 +31,6 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Models
 
         public string AuthCode { get; set; }
 
-        public bool IsAdmin { get; set; }
+        public string IsAdmin { get; set; }
     }
 }

@@ -45,6 +45,10 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">@Session["Username"]</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li><a class="dropdown-item" href="/ADMIN/AdminManagement/Members">回後台</a></li>
+                                    }
                                     <li><a class="dropdown-item" href="/SHOP/Members/LineNotifySetting">LineNotify設置</a></li>
                                     <li><a class="dropdown-item" href="/SHOP/Members/ChangePassword">修改密碼</a></li>
                                     <li><a class="dropdown-item" href="/SHOP/Members/Logout">登出</a></li>
