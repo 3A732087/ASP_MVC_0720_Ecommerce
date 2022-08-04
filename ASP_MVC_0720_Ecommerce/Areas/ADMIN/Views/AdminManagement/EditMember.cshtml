@@ -1,0 +1,65 @@
+﻿@model ASP_MVC_0720_Ecommerce.Areas.ADMIN.ViewModel.AdminMembersViewModel
+
+@{
+    ViewBag.Title = "EditMember";
+    Layout = "~/Areas/ADMIN/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">會員管理</h1>
+    @using (Html.BeginForm("EditMember", "AdminManagement", FormMethod.Post))
+    {
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.EditMember.Account)
+                @Html.TextBoxFor(model => model.EditMember.Account, new { @class = "form-control", @readonly = "readonly"})
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.EditMember.Password)
+                @Html.PasswordFor(model => model.EditMember.Password, new { @class = "form-control", @Value = Model.EditMember.Password })
+                @Html.ValidationMessageFor(model => model.EditMember.Password, null, new { @class = "alert-danger" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.EditMember.Name)
+                @Html.TextBoxFor(model => model.EditMember.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EditMember.Name, null, new { @class = "alert-danger" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.EditMember.Email)
+                @Html.TextBoxFor(model => model.EditMember.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EditMember.Email, null, new { @class = "alert-danger" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.EditMember.AuthCode)
+                @Html.TextBoxFor(model => model.EditMember.AuthCode, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.EditMember.LineNotifyAccessToken)
+                @Html.TextBoxFor(model => model.EditMember.LineNotifyAccessToken, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.EditMember.IsAdmin)
+                @Html.DropDownListFor(model => model.EditMember.IsAdmin, Model.IsOnList, new { @class = "form-control" })
+            </div>
+        </div>
+        @*<div class="form-row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.EditMember.Name)
+                @Html.DropDownListFor(model => model.EditMember.Name, Model.IsOnList, new { @class = "form-control" })
+            </div>
+        </div>*@
+        <button type="submit" class="btn btn-primary">存檔</button>
+    }
+
+</div>
+<!-- /.container-fluid -->

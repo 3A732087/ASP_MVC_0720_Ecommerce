@@ -125,6 +125,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
     <Compile Include="Areas\ADMIN\Controllers\AdminManagementController.cs" />
+    <Compile Include="Areas\ADMIN\Models\AdminMembers.cs" />
+    <Compile Include="Areas\ADMIN\Services\MembersManagementService.cs" />
+    <Compile Include="Areas\ADMIN\ViewModel\AllMembersViewModel.cs" />
+    <Compile Include="Areas\ADMIN\ViewModel\AdminMembersViewModel.cs" />
     <Compile Include="Areas\SHOP\Controllers\CartsController.cs" />
     <Compile Include="Areas\SHOP\Controllers\HomeWebController.cs" />
     <Compile Include="Areas\SHOP\Controllers\MembersController.cs" />
@@ -186,6 +190,8 @@
     <Content Include="Areas\SHOP\Views\Members\ChangePassword.cshtml" />
     <Content Include="Areas\SHOP\Views\Members\LineNotifySetting.cshtml" />
     <Content Include="Areas\SHOP\Views\Members\AfterLineNotifyLogin.cshtml" />
+    <Content Include="Areas\ADMIN\Views\AdminManagement\Members.cshtml" />
+    <Content Include="Areas\ADMIN\Views\AdminManagement\EditMember.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

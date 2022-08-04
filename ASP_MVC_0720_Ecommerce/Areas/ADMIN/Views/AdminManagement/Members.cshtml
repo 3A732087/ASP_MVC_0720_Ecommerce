@@ -1,0 +1,59 @@
+﻿@model ASP_MVC_0720_Ecommerce.Areas.ADMIN.ViewModel.AllMembersViewModel
+
+@{
+    ViewBag.Title = "Members";
+    Layout = "~/Areas/ADMIN/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">會員管理</h1>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Jia Quan商店會員資料</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>帳號</th>
+                            <th>姓名</th>
+                            <th>電子郵件</th>
+                            <th>授權碼</th>
+                            <th>是否為管理員</th>
+                            <th>LineNotifyAccessToken</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Data in Model.AllMembersData)
+                        {
+                            string NewIsAdmin = Data.IsAdmin == "1" ? "是" : "否";
+                            <tr>
+                                <td>@Data.Account</td>
+                                <td>@Data.Name</td>
+                                <td>@Data.Email</td>
+                                <td>@Data.AuthCode</td>
+                                <td>@NewIsAdmin</td>
+                                <td>@Data.LineNotifyAccessToken</td>
+                                <td>
+                                    <p class="d-inline"><a href="@Url.Action("EditMember","AdminManagement")?Account=@Data.Account" class="btn btn-primary btn-sm">編輯</a></p>
+                                    <p class="d-inline"><a href="@Url.Action("DelMember","AdminManagement")?Account=@Data.Account" onclick="return confirm('確定刪除此會員嗎？')" class="btn btn-danger btn-sm">刪除</a></p>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
