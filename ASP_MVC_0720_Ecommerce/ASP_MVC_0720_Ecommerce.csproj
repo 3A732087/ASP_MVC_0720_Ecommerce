@@ -125,10 +125,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
     <Compile Include="Areas\ADMIN\Controllers\AdminManagementController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\AdminOrdersManagementController.cs" />
     <Compile Include="Areas\ADMIN\Models\AdminMembers.cs" />
+    <Compile Include="Areas\ADMIN\Models\AdminOrderDetail.cs" />
+    <Compile Include="Areas\ADMIN\Models\AdminOrders.cs" />
     <Compile Include="Areas\ADMIN\Services\MembersManagementService.cs" />
+    <Compile Include="Areas\ADMIN\Services\OrderManagementService.cs" />
+    <Compile Include="Areas\ADMIN\ViewModel\AdminOrderDetailViewModel.cs" />
     <Compile Include="Areas\ADMIN\ViewModel\AllMembersViewModel.cs" />
     <Compile Include="Areas\ADMIN\ViewModel\AdminMembersViewModel.cs" />
+    <Compile Include="Areas\ADMIN\ViewModel\AllOrdersViewModel.cs" />
     <Compile Include="Areas\SHOP\Controllers\CartsController.cs" />
     <Compile Include="Areas\SHOP\Controllers\HomeWebController.cs" />
     <Compile Include="Areas\SHOP\Controllers\MembersController.cs" />
@@ -192,6 +198,8 @@
     <Content Include="Areas\SHOP\Views\Members\AfterLineNotifyLogin.cshtml" />
     <Content Include="Areas\ADMIN\Views\AdminManagement\Members.cshtml" />
     <Content Include="Areas\ADMIN\Views\AdminManagement\EditMember.cshtml" />
+    <Content Include="Areas\ADMIN\Views\AdminOrdersManagement\Orders.cshtml" />
+    <Content Include="Areas\ADMIN\Views\AdminOrdersManagement\EditOrders.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1906,7 +1914,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Areas\ADMIN\Views\AdminManagement\Index.cshtml" />
     <Content Include="Areas\SHOP\Views\Shared\_ShopLayout.cshtml" />
     <Content Include="Areas\SHOP\Views\HomeWeb\Index.cshtml" />
     <Content Include="Areas\SHOP\Views\Members\Register.cshtml" />

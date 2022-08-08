@@ -13,12 +13,6 @@ namespace ASP_MVC_0720_Ecommerce.Areas.ADMIN.Controllers
     {
         MembersManagementService membersmanagementService = new MembersManagementService();
 
-        // GET: ADMIN/AdminManagement
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [Authorize(Roles = "Admin")]
         public ActionResult Members()
         {

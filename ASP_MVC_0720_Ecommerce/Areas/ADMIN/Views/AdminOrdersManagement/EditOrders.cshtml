@@ -1,0 +1,126 @@
+﻿@model ASP_MVC_0720_Ecommerce.Areas.ADMIN.ViewModel.AdminOrderDetailViewModel
+
+@{
+    ViewBag.Title = "EditOrders";
+    Layout = "~/Areas/ADMIN/Views/Shared/_AdminLayout.cshtml";
+    var Total = 0;
+}
+
+<style>
+    .Total {
+        display:none;
+        color:red;
+    }
+</style>
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">訂單管理</h1>
+    @using (Html.BeginForm("EditOrders", "AdminOrdersManagement", FormMethod.Post))
+    {
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.DetailData[0].Order_No)
+                @Html.TextBoxFor(model => model.DetailData[0].Order_No, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.DetailData[0].Account)
+                @Html.TextBoxFor(model => model.DetailData[0].Account, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.DetailData[0].Receiver)
+                @Html.TextBoxFor(model => model.DetailData[0].Receiver, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.DetailData[0].Email)
+                @Html.TextBoxFor(model => model.DetailData[0].Email, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.DetailData[0].Address)
+                @Html.TextBoxFor(model => model.DetailData[0].Address, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.DetailData[0].Date)
+                @Html.TextBoxFor(model => model.DetailData[0].Date, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.DetailData[0].Total)
+                @Html.TextBoxFor(model => model.DetailData[0].Total, new { @class = "form-control", @id = "Total", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <table class="table table-hover" id="Product_Table">
+            <thead>
+                <tr>
+                    <th scope="col">產品編號</th>
+                    <th scope="col">產品名稱</th>
+                    <th scope="col">價格</th>
+                    <th scope="col">數量</th>
+                    <th scope="col">小計</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.DetailData.Count; i++)
+                {
+                    int subTotal = Model.DetailData[i].Price * Model.DetailData[i].Qty;
+                    <tr>
+                        @Html.TextBoxFor(model => model.DetailData[i].OrderDetail_Id, new { @style = "Display:none" })
+                        <td>@Model.DetailData[i].Product_No</td>
+                        <td>@Model.DetailData[i].Product_Name</td>
+                        <td id="Price_@i.ToString()">@Model.DetailData[i].Price</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.DetailData[i].Qty, new { @class = "form-control", @id = "Qty_" + i.ToString(), @value = Model.DetailData[i].Qty, @onchange = "resetTotal(" + i.ToString() + ")" })
+                        </td>
+
+                        <td id="subTotal_@i.ToString()">@subTotal </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div id="NewTotal" class="Total mb-4">
+            修改後總金額：
+        </div>
+
+        <button type="submit" class="btn btn-primary">存檔</button>
+    }
+
+</div>
+<!-- /.container-fluid -->
+@section scripts{
+    <script type="text/javascript">
+        function resetTotal(index) {
+            var OrderQty = @Model.DetailData.Count;
+            //取得此筆商品價格及新數量
+            var Table = document.getElementById("Product_Table");
+            var Price = Table.rows[index + 1].cells[2].innerHTML;
+            var NewQty = document.getElementById("Qty_" + index).value;
+            if (NewQty < 1) {
+                alert("商品數量不可小於1");
+                location.reload();
+            }
+            var NewSubTotal = Price * NewQty;
+            var NewTotal = 0;
+            Table.rows[index + 1].cells[4].innerHTML = NewSubTotal;
+
+            for (var j = 1; j <= OrderQty; j++) {
+                NewTotal += Number(Table.rows[j].cells[4].innerHTML);
+            }
+
+            document.getElementById("NewTotal").innerHTML = "修改後總金額：" + NewTotal;
+            document.getElementById("Total").value = NewTotal;
+            document.getElementById("NewTotal").style.display = "block";
+
+
+        }
+    </script>
+}
+

@@ -1,0 +1,60 @@
+﻿@model ASP_MVC_0720_Ecommerce.Areas.ADMIN.ViewModel.AllOrdersViewModel
+
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Areas/ADMIN/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">訂單管理</h1>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Jia Quan商店訂單資料</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>訂單編號</th>
+                            <th>訂單日期</th>
+                            <th>帳號</th>
+                            <th>收件者</th>
+                            <th>Email</th>
+                            <th>地址</th>
+                            <th>總金額</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Data in Model.OrderList)
+                        {
+                        <tr>
+                            <td>@Data.Order_No</td>
+                            <td>@Data.Date</td>
+                            <td>@Data.Account</td>
+                            <td>@Data.Receiver</td>
+                            <td>@Data.Email</td>
+                            <td>@Data.Address</td>
+                            <td>@Data.Total</td>
+                            <td>
+                                <p class="d-inline"><a href="@Url.Action("EditOrders","AdminOrdersManagement")?Order_No=@Data.Order_No" class="btn btn-primary btn-sm">編輯</a></p>
+                                <p class="d-inline"><a href="@Url.Action("DelOrders","AdminOrdersManagement")?Order_No=@Data.Order_No" onclick="return confirm('確定刪除此筆訂單嗎？')" class="btn btn-danger btn-sm">刪除</a></p>
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
