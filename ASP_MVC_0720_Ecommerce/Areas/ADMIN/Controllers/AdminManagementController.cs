@@ -36,10 +36,9 @@ namespace ASP_MVC_0720_Ecommerce.Areas.ADMIN.Controllers
 
             List<SelectListItem> Data = new List<SelectListItem>();
             Data.Add(new SelectListItem { Text = "是", Value = "1" });
-            Data.Add(new SelectListItem { Text = "否", Value = "0", Selected = true });
+            Data.Add(new SelectListItem { Text = "否", Value = "0"});
 
-            memberData.IsOnList = Data;
-
+            ViewBag.IsOnList = Data;
             return View(memberData);
         }
 

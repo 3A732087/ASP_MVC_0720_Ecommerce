@@ -49,15 +49,10 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 @Html.LabelFor(model => model.EditMember.IsAdmin)
-                @Html.DropDownListFor(model => model.EditMember.IsAdmin, Model.IsOnList, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.EditMember.IsAdmin, (IEnumerable<SelectListItem>)ViewBag.IsOnList, new { @class = "form-control" })
+
             </div>
         </div>
-        @*<div class="form-row">
-            <div class="form-group col-md-4">
-                @Html.LabelFor(model => model.EditMember.Name)
-                @Html.DropDownListFor(model => model.EditMember.Name, Model.IsOnList, new { @class = "form-control" })
-            </div>
-        </div>*@
         <button type="submit" class="btn btn-primary">存檔</button>
     }
 

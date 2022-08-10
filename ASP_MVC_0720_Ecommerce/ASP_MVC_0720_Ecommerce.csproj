@@ -126,15 +126,19 @@
     <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
     <Compile Include="Areas\ADMIN\Controllers\AdminManagementController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\AdminOrdersManagementController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\AdminProductsManagementController.cs" />
     <Compile Include="Areas\ADMIN\Models\AdminMembers.cs" />
     <Compile Include="Areas\ADMIN\Models\AdminOrderDetail.cs" />
     <Compile Include="Areas\ADMIN\Models\AdminOrders.cs" />
+    <Compile Include="Areas\ADMIN\Models\AdminProducts.cs" />
     <Compile Include="Areas\ADMIN\Services\MembersManagementService.cs" />
     <Compile Include="Areas\ADMIN\Services\OrderManagementService.cs" />
+    <Compile Include="Areas\ADMIN\Services\ProductsManagementService.cs" />
     <Compile Include="Areas\ADMIN\ViewModel\AdminOrderDetailViewModel.cs" />
     <Compile Include="Areas\ADMIN\ViewModel\AllMembersViewModel.cs" />
     <Compile Include="Areas\ADMIN\ViewModel\AdminMembersViewModel.cs" />
     <Compile Include="Areas\ADMIN\ViewModel\AllOrdersViewModel.cs" />
+    <Compile Include="Areas\ADMIN\ViewModel\AllProductsViewModel.cs" />
     <Compile Include="Areas\SHOP\Controllers\CartsController.cs" />
     <Compile Include="Areas\SHOP\Controllers\HomeWebController.cs" />
     <Compile Include="Areas\SHOP\Controllers\MembersController.cs" />
@@ -200,6 +204,8 @@
     <Content Include="Areas\ADMIN\Views\AdminManagement\EditMember.cshtml" />
     <Content Include="Areas\ADMIN\Views\AdminOrdersManagement\Orders.cshtml" />
     <Content Include="Areas\ADMIN\Views\AdminOrdersManagement\EditOrders.cshtml" />
+    <Content Include="Areas\ADMIN\Views\AdminProductsManagement\Product.cshtml" />
+    <Content Include="Areas\ADMIN\Views\AdminProductsManagement\EditProduct.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1908,6 +1914,7 @@
     <Folder Include="Areas\SHOP\Data\" />
     <Folder Include="Images\SHOP\" />
     <Folder Include="Models\" />
+    <Folder Include="Upload\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

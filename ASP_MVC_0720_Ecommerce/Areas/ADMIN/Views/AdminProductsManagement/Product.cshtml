@@ -1,0 +1,67 @@
+﻿@model ASP_MVC_0720_Ecommerce.Areas.ADMIN.ViewModel.AllProductsViewModel
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Areas/ADMIN/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">商品管理</h1>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Jia Quan商店商品資料</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>商品編號</th>
+                            <th>商品名稱</th>
+                            <th>價格</th>
+                            <th>安全銷售量</th>
+                            <th>商品圖片</th>
+                            <th>推薦</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Data in Model.ProductList)
+                        {
+                            string Recommend;
+                            if(Data.Recommend == "1")
+                            {
+                                Recommend = "是";
+                            }
+                            else
+                            {
+                                Recommend = "否";
+                            }
+                            <tr>
+                                <td>@Data.Product_No</td>
+                                <td>@Data.Product_Name</td>
+                                <td>@Data.Price</td>
+                                <td>@Data.Quantity</td>
+                                <td>@Data.Image</td>
+                                <td>@Recommend</td>
+                                <td>
+                                    <p class="d-inline"><a href="@Url.Action("EditProduct","AdminProductsManagement")?Product_No=@Data.Product_No" class="btn btn-primary btn-sm">編輯</a></p>
+                                    <p class="d-inline"><a href="@Url.Action("DelProduct","AdminProductsManagement")?Product_No=@Data.Product_No" onclick="return confirm('確定刪除此筆商品嗎？')" class="btn btn-danger btn-sm">刪除</a></p>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
