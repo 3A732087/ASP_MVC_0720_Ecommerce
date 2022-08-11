@@ -1,0 +1,50 @@
+﻿@model ASP_MVC_0720_Ecommerce.Areas.ADMIN.ViewModel.AllSlideShowViewModel
+
+@{
+    ViewBag.Title = "SlideShow";
+    Layout = "~/Areas/ADMIN/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">輪播圖管理</h1>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Jia Quan商店輪播圖資料</h6>
+            <p class="mt-1 mb-1"><a href="@Url.Action("Create","AdminSlideShowManagement")"  class="btn btn-success btn-sm">新增圖片</a></p>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="col-md-10">輪播圖名稱</th>
+                            <th class="col-md-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Data in Model.SlideShowList)
+                        {
+                            <tr>
+                                <td>@Data.Img_Name</td>
+                                <td>
+                                    <p class="d-inline"><a href="@Url.Action("EditSlideShow","AdminSlideShowManagement")?Img_Id=@Data.Img_Id" class="btn btn-primary btn-sm">編輯</a></p>
+                                    <p class="d-inline"><a href="@Url.Action("DelSlideShow","AdminSlideShowManagement")?Img_Id=@Data.Img_Id" onclick="return confirm('確定刪除此張圖片嗎？')" class="btn btn-danger btn-sm">刪除</a></p>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->

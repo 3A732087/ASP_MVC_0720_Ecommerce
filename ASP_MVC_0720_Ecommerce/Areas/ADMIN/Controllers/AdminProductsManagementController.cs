@@ -50,48 +50,47 @@ namespace ASP_MVC_0720_Ecommerce.Areas.ADMIN.Controllers
         [HttpPost]
         public ActionResult EditProduct(AdminProducts EditProduct)
         {
-
-                if(EditProduct.ProductImage != null)
+            if (EditProduct.ProductImage != null)
+            {
+                if (productsmanagementService.CheckImg(EditProduct.ProductImage.ContentType))
                 {
-                    if (productsmanagementService.CheckImg(EditProduct.ProductImage.ContentType))
+                    /*實際上傳路徑*/
+                    string path = Server.MapPath(@"~/Upload/Products/");
+                    path += EditProduct.Product_Id.ToString();
+
+                    //取得檔名
+                    string filename = Path.GetFileName(EditProduct.ProductImage.FileName);
+
+                    if (Directory.Exists(path))
                     {
-                        /*實際上傳路徑*/
-                        string path = Server.MapPath(@"~/Upload/Products/");
-                        path += EditProduct.Product_Id.ToString();
+                        /*刪除資料夾內檔案重新上傳*/
+                        string[] files = Directory.GetFiles(path);
 
-                        //取得檔名
-                        string filename = Path.GetFileName(EditProduct.ProductImage.FileName);
-
-                        if (Directory.Exists(path))
+                        for (int i = 0; i < 1; i++)
                         {
-                            /*刪除資料夾內檔案重新上傳*/
-                            string[] files = Directory.GetFiles(path);
-
-                            for(int i = 0; i < 1; i++)
+                            if (files.Length > 0)
                             {
-                                if(files.Length > 0)
-                                {
-                                    System.IO.File.Delete(files[i]);
-                                }
+                                System.IO.File.Delete(files[i]);
                             }
-
-                            string url = Path.Combine(path, filename);
-
-                            EditProduct.ProductImage.SaveAs(url);
-                            EditProduct.Image = filename;
-                        }
-                        else
-                        {
-                            Directory.CreateDirectory(path);
-                            string url = Path.Combine(path, filename);
-
-                            EditProduct.ProductImage.SaveAs(url);
-                            EditProduct.Image = filename;
                         }
 
+                        string url = Path.Combine(path, filename);
+
+                        EditProduct.ProductImage.SaveAs(url);
+                        EditProduct.Image = filename;
                     }
+                    else
+                    {
+                        Directory.CreateDirectory(path);
+                        string url = Path.Combine(path, filename);
+
+                        EditProduct.ProductImage.SaveAs(url);
+                        EditProduct.Image = filename;
+                    }
+
                 }
-                productsmanagementService.EditProduct(EditProduct);
+            }
+            productsmanagementService.EditProduct(EditProduct);
 
             TempData["msg"] = "修改成功！";
 

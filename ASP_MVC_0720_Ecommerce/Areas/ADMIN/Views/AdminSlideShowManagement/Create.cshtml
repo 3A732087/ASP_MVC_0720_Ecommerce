@@ -1,0 +1,42 @@
+﻿@model ASP_MVC_0720_Ecommerce.Areas.ADMIN.Models.AdminSlideShow
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/ADMIN/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">輪播圖管理</h1>
+    @using (Html.BeginForm("Create", "AdminSlideShowManagement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Img_Name)
+                @Html.TextBoxFor(model => model.Img_Name, new { @class = "form-control", @readonly = "readonly" })
+                <div class="custom-file">
+                    @Html.TextBoxFor(model => model.SlideShowImg, new { @class = "custom-file-input", type = "file" })
+                    <label class="custom-file-label" for="validatedCustomFile">選擇檔案...</label>
+                </div>
+                @Html.ValidationMessageFor(model => model.SlideShowImg, null, new { @class = "alert-danger" })
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">存檔</button>
+    }
+
+</div>
+<!-- /.container-fluid -->
+@section scripts{
+    <script type="text/javascript">
+        //上船圖檔名稱顯示
+        $(document).ready(function () {
+            $(".custom-file-input").change(function () {
+                $(this).next(".custom-file-label").html($(this).val().split("\\").pop());
+            });
+        });
+
+    </script>
+}
+

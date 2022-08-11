@@ -127,18 +127,22 @@
     <Compile Include="Areas\ADMIN\Controllers\AdminManagementController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\AdminOrdersManagementController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\AdminProductsManagementController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\AdminSlideShowManagementController.cs" />
     <Compile Include="Areas\ADMIN\Models\AdminMembers.cs" />
     <Compile Include="Areas\ADMIN\Models\AdminOrderDetail.cs" />
     <Compile Include="Areas\ADMIN\Models\AdminOrders.cs" />
     <Compile Include="Areas\ADMIN\Models\AdminProducts.cs" />
+    <Compile Include="Areas\ADMIN\Models\AdminSlideShow.cs" />
     <Compile Include="Areas\ADMIN\Services\MembersManagementService.cs" />
     <Compile Include="Areas\ADMIN\Services\OrderManagementService.cs" />
     <Compile Include="Areas\ADMIN\Services\ProductsManagementService.cs" />
+    <Compile Include="Areas\ADMIN\Services\SlideShowManagementService.cs" />
     <Compile Include="Areas\ADMIN\ViewModel\AdminOrderDetailViewModel.cs" />
     <Compile Include="Areas\ADMIN\ViewModel\AllMembersViewModel.cs" />
     <Compile Include="Areas\ADMIN\ViewModel\AdminMembersViewModel.cs" />
     <Compile Include="Areas\ADMIN\ViewModel\AllOrdersViewModel.cs" />
     <Compile Include="Areas\ADMIN\ViewModel\AllProductsViewModel.cs" />
+    <Compile Include="Areas\ADMIN\ViewModel\AllSlideShowViewModel.cs" />
     <Compile Include="Areas\SHOP\Controllers\CartsController.cs" />
     <Compile Include="Areas\SHOP\Controllers\HomeWebController.cs" />
     <Compile Include="Areas\SHOP\Controllers\MembersController.cs" />
@@ -150,10 +154,12 @@
     <Compile Include="Areas\SHOP\Models\Order.cs" />
     <Compile Include="Areas\SHOP\Models\OrderDetail.cs" />
     <Compile Include="Areas\SHOP\Models\Products.cs" />
+    <Compile Include="Areas\SHOP\Models\SlideShow.cs" />
     <Compile Include="Areas\SHOP\Services\CartsService.cs" />
     <Compile Include="Areas\SHOP\Services\OrderService.cs" />
     <Compile Include="Areas\SHOP\Services\ProductService.cs" />
     <Compile Include="Areas\SHOP\Services\PurchaseSerivce.cs" />
+    <Compile Include="Areas\SHOP\Services\SlideShowService.cs" />
     <Compile Include="Areas\SHOP\SHOPAreaRegistration.cs" />
     <Compile Include="Areas\SHOP\ViewModels\CheckoutViewModel.cs" />
     <Compile Include="Areas\SHOP\ViewModels\MembersChangePasswordViewModel.cs" />
@@ -161,6 +167,7 @@
     <Compile Include="Areas\SHOP\ViewModels\MembersRegisterViewModel.cs" />
     <Compile Include="Areas\SHOP\ViewModels\OrderDetailViewModel.cs" />
     <Compile Include="Areas\SHOP\ViewModels\OrderViewModel.cs" />
+    <Compile Include="Areas\SHOP\ViewModels\SlideShowViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +213,9 @@
     <Content Include="Areas\ADMIN\Views\AdminOrdersManagement\EditOrders.cshtml" />
     <Content Include="Areas\ADMIN\Views\AdminProductsManagement\Product.cshtml" />
     <Content Include="Areas\ADMIN\Views\AdminProductsManagement\EditProduct.cshtml" />
+    <Content Include="Areas\ADMIN\Views\AdminSlideShowManagement\SlideShow.cshtml" />
+    <Content Include="Areas\ADMIN\Views\AdminSlideShowManagement\Create.cshtml" />
+    <Content Include="Areas\ADMIN\Views\AdminSlideShowManagement\EditSlideShow.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1915,6 +1925,7 @@
     <Folder Include="Images\SHOP\" />
     <Folder Include="Models\" />
     <Folder Include="Upload\Products\" />
+    <Folder Include="Upload\SlideShow\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
