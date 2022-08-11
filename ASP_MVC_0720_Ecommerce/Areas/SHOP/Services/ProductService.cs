@@ -68,7 +68,7 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Services
                 SqlCommand Sql_cmd = new SqlCommand();
                 Sql_cmd.Connection = conn;
 
-                string sql = @"select * from Products";
+                string sql = @"select * from Products where Quantity > 0 ";
                 Sql_cmd.CommandText = sql;
 
                 SqlDataReader dr = Sql_cmd.ExecuteReader();
