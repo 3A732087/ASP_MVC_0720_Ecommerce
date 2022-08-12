@@ -1,9 +1,11 @@
 ﻿using ASP_MVC_0720_Ecommerce.Areas.SHOP.Services;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Controllers
 {
@@ -11,9 +13,20 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Controllers
     {
         private readonly ProductService productService = new ProductService();
         // GET: SHOP/Products
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    ViewBag.ProductList = productService.GetAllProducts();
+        //    return View();
+        //}
+
+        public ActionResult Index(int? page)
         {
-            ViewBag.ProductList = productService.GetAllProducts();
+            var ProductsData = productService.GetAllProducts();
+
+            var pageNumber = page ?? 1;
+            var onePageOfProducts = ProductsData.ToPagedList(pageNumber, 5);
+            ViewBag.ProductList = onePageOfProducts;
+
             return View();
         }
 

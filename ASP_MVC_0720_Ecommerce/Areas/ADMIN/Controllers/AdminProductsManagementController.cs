@@ -1,6 +1,7 @@
 ﻿using ASP_MVC_0720_Ecommerce.Areas.ADMIN.Models;
 using ASP_MVC_0720_Ecommerce.Areas.ADMIN.Services;
 using ASP_MVC_0720_Ecommerce.Areas.ADMIN.ViewModel;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,11 +17,16 @@ namespace ASP_MVC_0720_Ecommerce.Areas.ADMIN.Controllers
 
         // GET: ADMIN/AdminProductsManagement
         [Authorize(Roles = "Admin")]
-        public ActionResult Product()
+        public ActionResult Product(int? page)
         {
-            AllProductsViewModel Data = new AllProductsViewModel();
-            Data.ProductList = productsmanagementService.GetAllProducts();
-            return View(Data);
+            List<AdminProducts> ProductList = new List<AdminProducts>();
+
+            ProductList = productsmanagementService.GetAllProducts();
+
+            var pageNumber = page ?? 1;
+            var onePageOfProducts = ProductList.ToPagedList(pageNumber, 5);
+
+            return View(onePageOfProducts);
         }
 
         [Authorize(Roles = "Admin")]
