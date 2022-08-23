@@ -1,6 +1,5 @@
-﻿@using PagedList.Mvc;
-@using PagedList;
-@model IPagedList<ASP_MVC_0720_Ecommerce.Areas.ADMIN.Models.AdminOrders>
+﻿@model ASP_MVC_0720_Ecommerce.Areas.ADMIN.ViewModel.AllOrdersViewModel
+
 @{
     ViewBag.Title = "Orders";
     Layout = "~/Areas/ADMIN/Views/Shared/_AdminLayout.cshtml";
@@ -34,27 +33,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var Data in Model)
+                        @foreach (var Data in Model.OrderList)
                         {
-                            <tr>
-                                <td>@Data.Order_No</td>
-                                <td>@Data.Date</td>
-                                <td>@Data.Account</td>
-                                <td>@Data.Receiver</td>
-                                <td>@Data.Email</td>
-                                <td>@Data.Address</td>
-                                <td>@Data.Total</td>
-                                <td>
-                                    <p class="d-inline"><a href="@Url.Action("EditOrders","AdminOrdersManagement")?Order_No=@Data.Order_No" class="btn btn-primary btn-sm">編輯</a></p>
-                                    <p class="d-inline"><a href="@Url.Action("DelOrders","AdminOrdersManagement")?Order_No=@Data.Order_No" onclick="return confirm('確定刪除此筆訂單嗎？')" class="btn btn-danger btn-sm">刪除</a></p>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>@Data.Order_No</td>
+                            <td>@Data.Date</td>
+                            <td>@Data.Account</td>
+                            <td>@Data.Receiver</td>
+                            <td>@Data.Email</td>
+                            <td>@Data.Address</td>
+                            <td>@Data.Total</td>
+                            <td>
+                                <p class="d-inline"><a href="@Url.Action("EditOrders","AdminOrdersManagement")?Order_No=@Data.Order_No" class="btn btn-primary btn-sm">編輯</a></p>
+                                <p class="d-inline"><a href="@Url.Action("DelOrders","AdminOrdersManagement")?Order_No=@Data.Order_No" onclick="return confirm('確定刪除此筆訂單嗎？')" class="btn btn-danger btn-sm">刪除</a></p>
+                            </td>
+                        </tr>
                         }
 
                     </tbody>
                 </table>
-                @Html.PagedListPager(Model, page => Url.Action("Orders", new { page }))
-
             </div>
         </div>
     </div>

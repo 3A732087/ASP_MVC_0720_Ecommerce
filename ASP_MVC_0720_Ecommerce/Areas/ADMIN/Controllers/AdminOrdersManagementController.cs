@@ -1,7 +1,6 @@
 ﻿using ASP_MVC_0720_Ecommerce.Areas.ADMIN.Models;
 using ASP_MVC_0720_Ecommerce.Areas.ADMIN.Services;
 using ASP_MVC_0720_Ecommerce.Areas.ADMIN.ViewModel;
-using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +14,12 @@ namespace ASP_MVC_0720_Ecommerce.Areas.ADMIN.Controllers
         OrderManagementService ordermanagentService = new OrderManagementService();
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Orders(int? page)
+        public ActionResult Orders()
         {
-            List<AdminOrders> OrderList = new List<AdminOrders>();
+            AllOrdersViewModel Data = new AllOrdersViewModel();
+            Data.OrderList = ordermanagentService.GetAllOrderList();
 
-            OrderList = ordermanagentService.GetAllOrderList();
-
-            var pageNumber = page ?? 1;
-            var onePageOfOrders = OrderList.ToPagedList(pageNumber, 5);
-
-            return View(onePageOfOrders);
+            return View(Data);
         }
 
         [Authorize(Roles = "Admin")]

@@ -1,7 +1,6 @@
 ﻿using ASP_MVC_0720_Ecommerce.Areas.ADMIN.Models;
 using ASP_MVC_0720_Ecommerce.Areas.ADMIN.Services;
 using ASP_MVC_0720_Ecommerce.Areas.ADMIN.ViewModel;
-using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +14,11 @@ namespace ASP_MVC_0720_Ecommerce.Areas.ADMIN.Controllers
         MembersManagementService membersmanagementService = new MembersManagementService();
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Members(int? page)
+        public ActionResult Members()
         {
-            List<AdminMembers> AllMembersData = new List<AdminMembers>();
-
-            AllMembersData = membersmanagementService.GetAllMembers();
-
-            var pageNumber = page ?? 1;
-            var onePageOfMembers = AllMembersData.ToPagedList(pageNumber, 5);
-
-            return View(onePageOfMembers);
+            AllMembersViewModel allMebers = new AllMembersViewModel();
+            allMebers.AllMembersData = membersmanagementService.GetAllMembers();
+            return View(allMebers);
         }
 
         [Authorize(Roles = "Admin")]

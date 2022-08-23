@@ -1,11 +1,9 @@
 ﻿@using ASP_MVC_0720_Ecommerce.Areas.SHOP.Models;
-@using PagedList;
-@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/SHOP/Views/Shared/_ShopLayout.cshtml";
 
-    //List<Products> AllProducts = ViewBag.ProductList;
+    List<Products> AllProducts = ViewBag.ProductList;
 }
 
 <!-- Blog preview section-->
@@ -20,7 +18,7 @@
             </div>
         </div>
         <div class="row gx-5">
-            @foreach (Products product in ViewBag.ProductList)
+            @foreach (Products product in AllProducts)
             {
                 <div class="col-lg-4 mb-5">
                     <div class="card h-100 shadow border-0">
@@ -34,11 +32,7 @@
                 </div>
             }
         </div>
-        @Html.PagedListPager((IPagedList)ViewBag.ProductList, page => Url.Action("Index", new { page }), new PagedListRenderOptions
-   {
-       UlElementClasses = new string[] { "pagination justify-content-center" }
-        })
-
+       
     </div>
 </section>
 
