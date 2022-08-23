@@ -102,54 +102,5 @@ namespace ASP_MVC_0720_Ecommerce.Areas.ADMIN.Controllers
 
             return RedirectToAction("Product", "AdminProductsManagement");
         }
-
-        [Authorize(Roles = "Admin")]
-        public ActionResult Create()
-        {
-            List<SelectListItem> Data = new List<SelectListItem>();
-            Data.Add(new SelectListItem { Text = "是", Value = "1" });
-            Data.Add(new SelectListItem { Text = "否", Value = "0", Selected = true });
-
-            ViewBag.IsOnList = Data;
-            return View();
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpPost]
-        public ActionResult Create(AdminProducts EditProduct)
-        {
-            List<SelectListItem> Data = new List<SelectListItem>();
-            Data.Add(new SelectListItem { Text = "是", Value = "1" });
-            Data.Add(new SelectListItem { Text = "否", Value = "0", Selected = true });
-
-            ViewBag.IsOnList = Data;
-            if (ModelState.IsValid)
-            {
-                if (EditProduct.ProductImage != null)
-                {
-                    if (productsmanagementService.CheckImg(EditProduct.ProductImage.ContentType))
-                    {
-                        int newId = productsmanagementService.GetNewId();
-                        /*實際上傳路徑*/
-                        string path = Server.MapPath(@"~/Upload/Products/");
-                        path += newId;
-
-                        //取得檔名
-                        string filename = Path.GetFileName(EditProduct.ProductImage.FileName);
-
-                        Directory.CreateDirectory(path);
-                        string url = Path.Combine(path, filename);
-
-                        EditProduct.ProductImage.SaveAs(url);
-                        EditProduct.Image = filename;
-                    }
-                }
-                productsmanagementService.CreateProduct(EditProduct);
-                TempData["msg"] = "新增成功！";
-                return RedirectToAction("Product", "AdminProductsManagement");
-            }
-            return View();
-
-        }
     }
 }

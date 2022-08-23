@@ -239,7 +239,6 @@
     <Content Include="Areas\ADMIN\Views\AdminSlideShowManagement\SlideShow.cshtml" />
     <Content Include="Areas\ADMIN\Views\AdminSlideShowManagement\Create.cshtml" />
     <Content Include="Areas\ADMIN\Views\AdminSlideShowManagement\EditSlideShow.cshtml" />
-    <Content Include="Areas\ADMIN\Views\AdminProductsManagement\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
