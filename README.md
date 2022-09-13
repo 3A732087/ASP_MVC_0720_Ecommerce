@@ -1,7 +1,7 @@
 ASP_MVC_0720_Ecommerce
 ======
 
-ASP_MVC_0720_Ecommerce是一個練習以ASP.NET MVC開發的基本電子商務網站，這個repo主要是練習並熟悉.NET框架及RAZOR語法。
+ASP_MVC_0720_Ecommerce是一個練習以ASP.NET MVC開發的基本電子商務網站，這個repo主要是練習並熟悉.NET框架、RAZOR語法及Line Notify API串接。
 
 ## 主要功能介紹
 
@@ -26,6 +26,7 @@ ASP_MVC_0720_Ecommerce是一個練習以ASP.NET MVC開發的基本電子商務�
 + 前台畫面模板：https://startbootstrap.com/template/modern-business
 + 後臺模板：https://startbootstrap.com/theme/sb-admin-2
 
+## 畫面截圖
 
 
 
