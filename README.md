@@ -19,7 +19,7 @@ ASP_MVC_0720_Ecommerce是一個練習以ASP.NET MVC開發的基本電子商務�
 + 商品管理
 + 首頁輪播圖管理
 
-##開發資訊
+## 開發資訊
 + ASP.NET MVC 
 + MSSQL
 + Line Notify
