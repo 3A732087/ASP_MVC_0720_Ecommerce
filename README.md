@@ -62,7 +62,7 @@ ASP_MVC_0720_Ecommerce是一個練習以ASP.NET MVC開發的基本電子商務�
 ![](https://i.imgur.com/TlpGp66.png)
 
 ### ● 訂購商品LINE Notify通知
-![](https://i.imgur.com/GEOu7h0.png)
+![](https://i.imgur.com/rIMINzC.png)
 
 ### 後台
 
