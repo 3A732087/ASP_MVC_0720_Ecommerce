@@ -21,8 +21,9 @@ ASP_MVC_0720_Ecommerce是一個練習以ASP.NET MVC開發的基本電子商務�
 
 ## 開發資訊
 + ASP.NET MVC 
++ PagedList套件
 + MSSQL
-+ Line Notify
++ Line Notify串接
 + 前台畫面模板：https://startbootstrap.com/template/modern-business
 + 後臺模板：https://startbootstrap.com/theme/sb-admin-2
 
@@ -66,13 +67,13 @@ ASP_MVC_0720_Ecommerce是一個練習以ASP.NET MVC開發的基本電子商務�
 ### 後台
 
 ### ● 會員管理
-![](https://i.imgur.com/cDCEk5U.png)
+![](https://i.imgur.com/jYqCmW9.png)
 
 ### ● 訂單管理
-![](https://i.imgur.com/7ZNCF3D.png)
+![](https://i.imgur.com/WT3vtLV.png)
 
 ### ● 商品管理
-![](https://i.imgur.com/SjOr3m7.png)
+![](https://i.imgur.com/28jE9Vp.png)
 
 ### ●首頁輪播圖設置
 ![](https://i.imgur.com/hJdWW0V.png)
