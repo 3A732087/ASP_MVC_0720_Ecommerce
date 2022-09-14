@@ -28,6 +28,53 @@ ASP_MVC_0720_Ecommerce是一個練習以ASP.NET MVC開發的基本電子商務�
 
 ## 畫面截圖
 
+### 前台
 
+#### ● 首頁
+![](https://i.imgur.com/Y789rjW.png)
+
+#### ● 註冊
+![](https://i.imgur.com/gYEXjc1.png)
+
+#### ● 登入
+![](https://i.imgur.com/Tgnl8lW.png)
+
+### ● 商品列表
+![](https://i.imgur.com/pZEhMzu.png)
+
+### ● 個別商品頁面
+![](https://i.imgur.com/pvGGbht.png)
+
+### ● 購物車
+![](https://i.imgur.com/ALzlnwz.png)
+
+### ● 結帳畫面
+![](https://i.imgur.com/E9PB8Qk.png)
+
+### ● 所有訂單
+![](https://i.imgur.com/nXUqOfF.png)
+
+### ● 訂單明細
+![](https://i.imgur.com/eDWnEGr.png)
+
+### ● LINE Notify通知綁定功能
+![](https://i.imgur.com/TlpGp66.png)
+
+### ● 訂購商品LINE Notify通知
+![](https://i.imgur.com/GEOu7h0.png)
+
+### 後台
+
+### ● 會員管理
+![](https://i.imgur.com/cDCEk5U.png)
+
+### ● 訂單管理
+![](https://i.imgur.com/7ZNCF3D.png)
+
+### ● 商品管理
+![](https://i.imgur.com/SjOr3m7.png)
+
+### ●首頁輪播圖設置
+![](https://i.imgur.com/hJdWW0V.png)
 
 
