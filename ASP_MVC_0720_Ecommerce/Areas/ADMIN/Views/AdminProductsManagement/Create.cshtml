@@ -1,0 +1,78 @@
+﻿@model ASP_MVC_0720_Ecommerce.Areas.ADMIN.Models.AdminProducts
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/ADMIN/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">商品管理</h1>
+    @using (Html.BeginForm("Create", "AdminProductsManagement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Product_Name)
+                @Html.TextBoxFor(model => model.Product_Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Product_Name, null, new { @class = "alert-danger" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Price)
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Price, null, new { @class = "alert-danger" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Quantity)
+                @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Quantity, null, new { @class = "alert-danger" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.ProductImage)
+                @Html.TextBoxFor(model => model.Image, new { @class = "form-control", @readonly = "readonly" })
+                <div class="custom-file">
+                    @Html.TextBoxFor(model => model.ProductImage, new { @class = "custom-file-input", type = "file" })
+                    <label class="custom-file-label" for="validatedCustomFile">選擇檔案...</label>
+                </div>
+                @Html.ValidationMessageFor(model => model.ProductImage, null, new { @class = "alert-danger" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Recommend)
+                @Html.DropDownListFor(model => model.Recommend, (List<SelectListItem>)ViewBag.IsOnList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Recommend, null, new { @class = "alert-danger" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Product_Content)
+                @Html.TextAreaFor(model => model.Product_Content, new
+                {
+                    @class = "form-control",
+                    @rows = "8"
+                })
+                @Html.ValidationMessageFor(model => model.Product_Content, null, new { @class = "alert-danger" })
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">存檔</button>
+    }
+
+</div>
+<!-- /.container-fluid -->
+@section scripts{
+    <script type="text/javascript">
+        //上船圖檔名稱顯示
+        $(document).ready(function () {
+            $(".custom-file-input").change(function () {
+                $(this).next(".custom-file-label").html($(this).val().split("\\").pop());
+            });
+        });
+    </script>
+}
+
+

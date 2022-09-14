@@ -149,6 +149,84 @@ namespace ASP_MVC_0720_Ecommerce.Areas.ADMIN.Services
         }
         #endregion
 
+        #region 取得新ID值
+        public int GetNewId()
+        {
+            string sql = @"select ident_current('Products')";
+            int newId = 0;
+            try
+            {
+                conn.Open();
+                SqlCommand Sql_cmd = new SqlCommand();
+                Sql_cmd.Connection = conn;
+                Sql_cmd.CommandText = sql;
+                SqlDataReader dr = Sql_cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    newId = Convert.ToInt32(dr[0]) + 1;
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return newId;
+        }
+        #endregion
+
+        #region 新增商品資料
+        public void CreateProduct(AdminProducts newProduct)
+        {
+            string sql = @"INSERT INTO Products (Product_Name, Product_Content, Price, Image, Recommend, Quantity) Values (@Product_Name, @Product_Content, @Price, @Image, @Recommend, @Quantity);SELECT CONVERT(INT, SCOPE_IDENTITY());";
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand Sql_cmd = new SqlCommand();
+                Sql_cmd.Connection = conn;
+                Sql_cmd.CommandText = sql;
+                Sql_cmd.Parameters.Clear();
+                Sql_cmd.Parameters.Add("@Product_Name", SqlDbType.NVarChar).Value = newProduct.Product_Name;
+                Sql_cmd.Parameters.Add("@Product_Content", SqlDbType.NVarChar).Value = newProduct.Product_Content;
+                Sql_cmd.Parameters.Add("@Price", SqlDbType.Int).Value = newProduct.Price;
+                Sql_cmd.Parameters.Add("@Image", SqlDbType.NVarChar).Value = newProduct.Image;
+                Sql_cmd.Parameters.Add("@Recommend", SqlDbType.NVarChar).Value = newProduct.Recommend;
+                Sql_cmd.Parameters.Add("@Quantity", SqlDbType.Int).Value = newProduct.Quantity;
+
+                int pkid = (Int32)Sql_cmd.ExecuteScalar();
+
+                #region 商品編號寫入
+                sql = @"UPDATE Products　SET Product_No = @Product_No WHERE Product_Id = @Product_Id";
+
+                string Product_No = "A" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:000}", Convert.ToInt32(pkid));
+
+                Sql_cmd.CommandText = sql;
+
+                Sql_cmd.Parameters.Clear();
+                Sql_cmd.Parameters.Add("@Product_No", SqlDbType.NVarChar).Value = Product_No;
+                Sql_cmd.Parameters.Add("@Product_Id", SqlDbType.Int).Value = pkid;
+
+                Sql_cmd.ExecuteNonQuery();
+                #endregion
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        #endregion
 
         #region 更新商品資料(編輯)
         public void EditProduct (AdminProducts EditProduct)

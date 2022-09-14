@@ -49,6 +49,12 @@
       <HintPath>..\packages\jose-jwt.4.0.0\lib\net472\jose-jwt.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -182,6 +188,7 @@
   <ItemGroup>
     <Content Include="Content\MANAGEMENT\css\sb-admin-2.css" />
     <Content Include="Content\MANAGEMENT\css\sb-admin-2.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\SHOP\css\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -216,6 +223,7 @@
     <Content Include="Areas\ADMIN\Views\AdminSlideShowManagement\SlideShow.cshtml" />
     <Content Include="Areas\ADMIN\Views\AdminSlideShowManagement\Create.cshtml" />
     <Content Include="Areas\ADMIN\Views\AdminSlideShowManagement\EditSlideShow.cshtml" />
+    <Content Include="Areas\ADMIN\Views\AdminProductsManagement\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -20,7 +20,7 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Services
 
 
         #region 結帳
-        public Dictionary<string,object> CheckoutAll(CheckoutViewModel newCheckout)
+        public Dictionary<string, object> CheckoutAll(CheckoutViewModel newCheckout)
         {
             conn.Open();
             SqlTransaction trans;
@@ -78,9 +78,19 @@ namespace ASP_MVC_0720_Ecommerce.Areas.SHOP.Services
                     Sql_cmd.Parameters.Add("@Qty", SqlDbType.Int).Value = product.Qty;
 
                     Sql_cmd.ExecuteNonQuery();
-                }
 
-                #endregion
+
+                    #endregion
+
+                    #region 更新商品數量
+                    sql = @"  UPDATE Products set Quantity  = Quantity - @Qty where 1=1 and Product_No = @Product_No";
+                    Sql_cmd.CommandText = sql;
+                    Sql_cmd.Parameters.Clear();
+                    Sql_cmd.Parameters.Add("@Qty", SqlDbType.Int).Value = product.Qty;
+                    Sql_cmd.Parameters.Add("@Product_No", SqlDbType.NVarChar).Value = product.Product.Product_No;
+                    Sql_cmd.ExecuteNonQuery();
+                    #endregion
+                }
 
                 #region 清除購物車資料
                 sql = @"DELETE FROM Carts WHERE Account = @Account";

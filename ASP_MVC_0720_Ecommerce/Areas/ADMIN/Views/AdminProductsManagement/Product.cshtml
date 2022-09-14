@@ -1,5 +1,6 @@
-﻿@model ASP_MVC_0720_Ecommerce.Areas.ADMIN.ViewModel.AllProductsViewModel
-
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<ASP_MVC_0720_Ecommerce.Areas.ADMIN.Models.AdminProducts>
 @{
     ViewBag.Title = "Product";
     Layout = "~/Areas/ADMIN/Views/Shared/_AdminLayout.cshtml";
@@ -16,6 +17,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Quan商店商品資料</h6>
+            <p class="mt-1 mb-1"><a href="@Url.Action("Create","AdminProductsManagement")" class="btn btn-success btn-sm">新增商品</a></p>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -32,10 +34,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var Data in Model.ProductList)
+                        @foreach (var Data in Model)
                         {
                             string Recommend;
-                            if(Data.Recommend == "1")
+                            if (Data.Recommend == "1")
                             {
                                 Recommend = "是";
                             }
@@ -59,6 +61,7 @@
 
                     </tbody>
                 </table>
+                @Html.PagedListPager(Model, page => Url.Action("Product", new { page }))
             </div>
         </div>
     </div>
